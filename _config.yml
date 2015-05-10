@@ -41,8 +41,8 @@ defaults:
     scope:
       path: "" # an empty string here means all files in the project
     values:
-      organization-name: "vehicle-history.io"
-      organization-url: "https://vehicle-history.io"
+      organization-name: "festivals-platform"
+      organization-url: "http://festivals-platform.github.io"
       organization-email: zenedith@wp.pl
       site-name: /developers
-      source-code-policy.url: "https://github.com/vehicle-history"
+      source-code-policy.url: "https://github.com/festivals-platform"
