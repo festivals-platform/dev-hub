@@ -1,0 +1,41 @@
+---
+layout: default
+title: Support
+overview: true
+---
+
+<h2>Support</h2>
+<p>Please contact us directly on contact@@vehicle-history.io and we'll respond as soon as possible.</p>
+<div class="row">
+
+    <div class="span6">
+        
+        {% raw  %}
+        <script id="directSupportListingTemplate" type="text/template">       
+            <li><a href="{{URL}}"><strong>{{Name}}</strong></a> - {{Description}}</li>                                                                                               
+        </script>
+        {% endraw %}        
+        
+        <script type="text/javascript">
+        function listAPIs()
+            {
+            $.getJSON('json/support.json', function(data) {
+                toggle = 0;
+                 $.each(data['Direct Support'], function(key, val) {
+                    var template = $('#directSupportListingTemplate').html();
+                    var html = Mustache.to_html(template, val);
+                    $('#directSupportListing').append(html);                          
+                    });
+                });
+            } 
+        listAPIs();
+        </script>      
+
+        <h3>Direct Support</h3>
+        <div style="height: 300px; overflow: auto;">
+            <ul id="directSupportListing"></ul>
+        </div>
+    </div>
+</div>
+<br />
+<p align="center">Support is critical to the success of this developers portal. Please provide feedback and help us make sure this program is successful.</p>

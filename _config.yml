@@ -1,0 +1,48 @@
+name: Developers portal
+markdown: redcarpet
+
+redcarpet:
+  extensions: ["tables", "autolink", "strikethrough", "space_after_headers", "with_toc_data",  "no_intra_emphasis", "fenced_code_blocks"]
+
+highlighter: pygments
+safe: true
+baseurl: /developers
+exclude:
+  - "static"
+  - "build.sh"
+  - "Dockerfile"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "Gruntfile.js"
+  - "nginx.conf"
+  - ".ruby-version"
+  - "node_modules"
+  - "package.json"
+  - "bower.json"
+  - "_components"
+  - "bower.json"
+  - "Rakefile"
+  - "*.ipr"
+  - "*.iml"
+  - "*.iws"
+
+  
+sass:
+  sass_dir: static/_sass
+
+permalink: /:year/:month/:day/:title
+
+# Blog/Post configuration
+paginate: 5
+paginate_path: "blog/page:num"
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      organization-name: "vehicle-history.io"
+      organization-url: "https://vehicle-history.io"
+      organization-email: zenedith@wp.pl
+      site-name: /developers
+      source-code-policy.url: "https://github.com/vehicle-history"
