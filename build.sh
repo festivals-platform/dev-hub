@@ -1,7 +1,7 @@
 #!/bin/sh
 bundle exec jekyll build
 
-IMAGE="zenedith/vh-developers"
+IMAGE="zenedith/festivals-developers"
 VERSION="$1"
 
 docker build $2 -t ${IMAGE}:${VERSION} .
