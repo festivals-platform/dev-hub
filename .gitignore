@@ -5,7 +5,6 @@ _site
 _components
 node_modules
 vendor
-static
 api
 css
 img
