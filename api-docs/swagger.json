@@ -1869,7 +1869,7 @@
     "oauth2token": {
       "type": "oauth2",
       "flow": "implicit",
-      "authorizationUrl": "https://vehicle-history.io/oauth/authorization",
+      "authorizationUrl": "https://festivals.tech/oauth/authorization",
       "scopes": {
         "public": "public API scope",
         "news:update": "permission to update news",
