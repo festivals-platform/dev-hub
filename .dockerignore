@@ -4,13 +4,9 @@ _data
 _includes
 _layouts
 _posts
-api
 api-docs
 blog
 console
-css
-img
-js
 json
 node_modules
 static

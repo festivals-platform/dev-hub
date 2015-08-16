@@ -5,7 +5,4 @@ _site
 _components
 node_modules
 vendor
-api
-css
-img
-js
+

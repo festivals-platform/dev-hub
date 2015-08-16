@@ -6,7 +6,7 @@ redcarpet:
 
 highlighter: pygments
 safe: true
-#baseurl: /developers
+baseurl: /developers
 exclude:
   - "static"
   - "build.sh"
