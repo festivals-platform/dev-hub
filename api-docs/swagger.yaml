@@ -65,6 +65,11 @@ paths:
           required: false
           type: string
           in: query
+        - name: sort
+          description: sort
+          required: false
+          type: string
+          in: query
       responses:
         "200":
           description: successful operation
@@ -226,6 +231,8 @@ paths:
           default: FANTASY
           enum:
             - FANTASY
+            - WOODSTOCK
+            - MUSIC
           in: query
         - name: tag
           description: tag
@@ -277,6 +284,11 @@ paths:
           description: offset
           required: false
           type: integer
+          in: query
+        - name: sort
+          description: sort
+          required: false
+          type: string
           in: query
       responses:
         "200":
@@ -483,6 +495,11 @@ paths:
           required: false
           type: integer
           in: query
+        - name: sort
+          description: sort
+          required: false
+          type: string
+          in: query
       responses:
         "200":
           description: successful operation
@@ -677,6 +694,11 @@ paths:
           description: offset
           required: false
           type: integer
+          in: query
+        - name: sort
+          description: sort
+          required: false
+          type: string
           in: query
       responses:
         "200":
@@ -877,6 +899,11 @@ paths:
           required: false
           type: integer
           in: query
+        - name: sort
+          description: sort
+          required: false
+          type: string
+          in: query
       responses:
         "200":
           description: successful operation
@@ -1071,6 +1098,11 @@ paths:
           required: false
           type: integer
           in: query
+        - name: sort
+          description: sort
+          required: false
+          type: string
+          in: query
       responses:
         "200":
           description: successful operation
@@ -1079,9 +1111,9 @@ paths:
     post:
       tags:
         - festivals-news
-      summary: Create news
-      description: Create news
-      operationId: createNews
+      summary: Create festival news
+      description: Create festival news
+      operationId: createFestivalNews
       consumes:
         - application/vnd.festivals.v1+json
       produces:
@@ -1120,9 +1152,9 @@ paths:
     get:
       tags:
         - festivals-news
-      summary: Get news
-      description: Get news
-      operationId: getNews
+      summary: Get festival news
+      description: Get festival news
+      operationId: getFestivalNews
       produces:
         - application/vnd.festivals.v1+json
       security:
@@ -1149,9 +1181,9 @@ paths:
     delete:
       tags:
         - festivals-news
-      summary: Delete news
-      description: Delete news
-      operationId: deleteNews
+      summary: Delete festival news
+      description: Delete festival news
+      operationId: deleteFestivalNews
       security:
         - oauth2token:
           - news:delete
@@ -1178,9 +1210,9 @@ paths:
     put:
       tags:
         - festivals-news
-      summary: Update news
-      description: Update news
-      operationId: updateNews
+      summary: Update festival news
+      description: Update festival news
+      operationId: updateFestivalNews
       consumes:
         - application/vnd.festivals.v1+json
       produces:
@@ -1583,6 +1615,15 @@ definitions:
         items:
           type: string
         description: Event tags
+      status:
+        type: string
+        description: Status of event
+        default: CREATED
+        enum:
+          - CREATED
+          - PUBLISHED
+          - CANCELED
+          - MOVED
       metadata:
         type: array
         items:
@@ -1630,6 +1671,15 @@ definitions:
         items:
           type: string
         description: Event tags
+      status:
+        type: string
+        description: Status of event
+        default: CREATED
+        enum:
+          - CREATED
+          - PUBLISHED
+          - CANCELED
+          - MOVED
       mainImage:
         $ref: "#/definitions/MainImageResponse"
         description: Event main image
@@ -1647,6 +1697,9 @@ definitions:
         items:
           $ref: "#/definitions/AuthorResponse"
         description: Event authors
+      publishedAt:
+        type: string
+        description: Event publishedAt
       createdAt:
         type: string
         description: Event createdAt
@@ -1661,6 +1714,7 @@ definitions:
       - duration
       - place
       - category
+      - publishedAt
       - createdAt
       - updatedAt
   FestivalResponse:
@@ -1677,9 +1731,17 @@ definitions:
       type:
         type: string
         description: Festival type
-        default: FANTASY
         enum:
           - FANTASY
+          - WOODSTOCK
+          - MUSIC
+      status:
+        type: string
+        description: Status of festival
+        enum:
+          - CREATED
+          - PUBLISHED
+          - CANCELED
       tags:
         type: array
         items:
@@ -1696,6 +1758,9 @@ definitions:
         description: Festival locations
         items:
           $ref: "#/definitions/LocationResponse"
+      publishedAt:
+        type: string
+        description: Festival publishedAt
       createdAt:
         type: string
         description: Festival createdAt
@@ -1707,8 +1772,11 @@ definitions:
       - id
       - name
       - description
-      - duration
+      - type
+      - status
       - locations
+      - duration
+      - publishedAt
       - createdAt
       - updatedAt
   FestivalRequest:
@@ -1725,6 +1793,16 @@ definitions:
         default: FANTASY
         enum:
           - FANTASY
+          - WOODSTOCK
+          - MUSIC
+      status:
+        type: string
+        description: Status of festival
+        default: CREATED
+        enum:
+          - CREATED
+          - PUBLISHED
+          - CANCELED
       tags:
         type: array
         items:
@@ -1747,6 +1825,7 @@ definitions:
     required:
       - name
       - description
+      - type
       - duration
       - locations
   FestivalsCollectionResponse:
@@ -1812,6 +1891,14 @@ definitions:
       description:
         type: string
         description: News description
+      status:
+        type: string
+        description: Status of news
+        default: CREATED
+        enum:
+          - CREATED
+          - PUBLISHED
+          - CANCELED
       mainImage:
         $ref: "#/definitions/MainImageResponse"
         description: Main image
@@ -1825,6 +1912,9 @@ definitions:
         items:
           type: string
         description: News tags
+      publishedAt:
+        type: string
+        description: News publishedAt
       createdAt:
         type: string
         description: News createdAt
@@ -1836,6 +1926,7 @@ definitions:
       - id
       - name
       - description
+      - status
       - mainImage
       - tags
       - createdAt
@@ -1848,6 +1939,14 @@ definitions:
       description:
         type: string
         description: News description
+      status:
+        type: string
+        description: Status of event
+        default: CREATED
+        enum:
+          - CREATED
+          - PUBLISHED
+          - CANCELED
       images:
         type: array
         items:
